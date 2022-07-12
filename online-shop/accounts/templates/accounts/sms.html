@@ -1,0 +1,23 @@
+{% extends "index.html" %}
+{% load static %}
+
+{% block content%}
+
+<html class="no-js" lang="fa" dir="rtl">
+  <div class="wrapper fadeInDown">
+    <div id="formContent">
+      <div class="fadeIn first">
+        <img src="" id="icon" alt=" کد پیامکی خود را وارد کنید" width="150"/>
+      </div>
+      <form action="." method="post">
+        <input type="text"  required class="fadeIn second" name="otp"  placeholder="Enter OTP">
+        <button><a href="{% url 'login' %}">تایید</a></button>
+      </form>
+      <div id="formFooter">
+        <a class="underlineHover" href="#">Change Mobile</a>
+      </div>
+    </div>
+  </div>
+</html>
+
+{% endblock content %}

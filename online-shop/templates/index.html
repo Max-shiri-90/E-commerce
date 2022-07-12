@@ -1,0 +1,46 @@
+{% load static %}
+
+<html class="no-js" lang="fa" dir="rtl">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Lakers Professional</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'assets/img/favicon.ico' %}">
+	<meta name="theme-color" content="#c40316">
+    <link rel="stylesheet" href="{% static 'assets/css/plugins.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+
+    <title>{% block title %}
+    {% endblock title %}</title>
+
+</head>
+
+<body>
+
+
+    <!--header area start-->
+{% block header %}
+    {% include "header.html" %}
+{% endblock header %}
+    <!--header area end-->
+
+
+{% block content %}
+{% endblock content %}
+
+{% block footer %}
+    {% include "footer.html" %}
+{% endblock footer %}
+
+
+    <script src="{% static 'assets/js/plugins.js'%}"></script>
+
+    <!-- Main JS -->
+    <script src="{% static 'assets/js/main.js'%}"></script>
+
+</body>
+
+</html>
