@@ -2,8 +2,8 @@ from django.http import HttpResponse
 from django.shortcuts import redirect, render
 from django.contrib.auth import authenticate, login as login_, logout as logout_
 from django.views import View
-from .models import Customer, Supplier
 
+from .models import Customer, Supplier
 from accounts.forms import CustomerRegister, LoginForm, SupplierRegister, SMSForm
 
 
