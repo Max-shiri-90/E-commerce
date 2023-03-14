@@ -1,9 +1,9 @@
 from django.contrib.auth.forms import UserChangeForm, UserCreationForm
 from django.core.validators import RegexValidator
-
-from .models import User, Customer, Supplier
 from django import forms
 from django.core import validators
+
+from .models import User, Customer, Supplier
 
 
 class LoginForm(forms.Form):
