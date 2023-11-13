@@ -251,28 +251,6 @@ Lakers
     </div>
     <!-- Special Categories End -->
 
-    <!-- Products Slide Start -->
-    <div class="container-fluid py-5">
-        <div class="row px-xl-5">
-            <div class="col">
-                <div class="owl-carousel vendor-carousel">
-                    {% for product in product_list %}
-                    <div class="vendor-item border p-4">
-                        {% for image in product.images.all %}
-                            {% if forloop.first %}
-                                <img src="/media/{{ image.image }}" alt="">
-                            {% endif %}
-                        {% endfor %}
-                        <a href="{{ product.get_absolute_url }}" class="font-weight mb-5">{{ product.title }}</a>
-                        <br>
-                    </div>
-                    {% endfor %}
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Products Slide End -->
-
     <!-- Offer Start -->
     <div class="container-fluid offer pt-5">
         <div class="row px-xl-5">
