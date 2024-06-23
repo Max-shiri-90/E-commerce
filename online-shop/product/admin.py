@@ -24,6 +24,7 @@ class ProductAdmin(admin.ModelAdmin):
         ('header', {'fields': ('title', 'price', 'discount_price', 'discount_percentage', 'quantity', 'description', 'category', 'size', 'color',)}),
     )
 
+
 admin.site.register(models.Category)
 admin.site.register(models.Color)
 admin.site.register(models.Size)
