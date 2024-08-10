@@ -6,8 +6,8 @@ from . import models
 class InformationAdmin(admin.StackedInline):
     model = models.Information
 
-    verbose_name = 'Information' 
-    verbose_name_plural = 'Information' 
+    verbose_name = 'Information'
+    verbose_name_plural = 'Information'
 
 
 class ImageAdmin(admin.StackedInline):
@@ -21,7 +21,9 @@ class ProductAdmin(admin.ModelAdmin):
     inlines = (ImageAdmin, InformationAdmin, )
 
     fieldsets = (
-        ('header', {'fields': ('title', 'price', 'discount_price', 'discount_percentage', 'quantity', 'description', 'category', 'size', 'color',)}),
+        ('header', {'fields': ('title', 'price', 'discount_price',
+                               'discount_percentage', 'quantity',
+                               'description', 'category', 'size', 'color',)}),
     )
 
 

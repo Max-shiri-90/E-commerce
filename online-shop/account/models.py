@@ -34,7 +34,8 @@ class UserManager(BaseUserManager):
 
 class User(AbstractBaseUser):
     phone = models.CharField(max_length=12, unique=True)
-    email = models.EmailField(max_length=255, null=True, blank=True, unique=True)
+    email = models.EmailField(max_length=255, null=True, blank=True,
+                              unique=True)
     fullname = models.CharField(max_length=50,  null=True, blank=True)
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
@@ -70,9 +71,10 @@ class Otp(models.Model):
     def __str__(self):
         return self.phone
 
-    
+
 class Address(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='addresses')
+    user = models.ForeignKey(User, on_delete=models.CASCADE,
+                             related_name='addresses')
     fullname = models.CharField(max_length=40)
     phone = models.CharField(max_length=12)
     address_provience = models.CharField(max_length=50)
@@ -81,9 +83,9 @@ class Address(models.Model):
     postal_code = models.CharField(max_length=10)
 
     def __str__(self):
-        address = self.address_provience + " - " + self.address_city + " - " + \
-                    self.address_street + " - " + self.postal_code + " - " + \
-                    self.fullname + " - " + self.phone
+        address = self.address_provience + " - " + self.address_city + " - " \
+            + self.address_street + " - " + self.postal_code + " - " + \
+            self.fullname + " - " + self.phone
         return address
 
     def save(self):

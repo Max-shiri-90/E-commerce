@@ -16,12 +16,19 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='User',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('password', models.CharField(max_length=128, verbose_name='password')),
-                ('last_login', models.DateTimeField(blank=True, null=True, verbose_name='last login')),
+                ('id', models.BigAutoField(auto_created=True,
+                                           primary_key=True, serialize=False,
+                                           verbose_name='ID')),
+                ('password', models.CharField(max_length=128,
+                                              verbose_name='password')),
+                ('last_login', models.DateTimeField(blank=True, null=True,
+                                                    verbose_name='last login')
+                 ),
                 ('phone', models.CharField(max_length=12, unique=True)),
-                ('email', models.EmailField(blank=True, max_length=255, null=True, unique=True)),
-                ('fullname', models.CharField(blank=True, max_length=50, null=True)),
+                ('email', models.EmailField(blank=True, max_length=255,
+                                            null=True, unique=True)),
+                ('fullname', models.CharField(blank=True, max_length=50,
+                                              null=True)),
                 ('is_active', models.BooleanField(default=True)),
                 ('is_admin', models.BooleanField(default=False)),
             ],
@@ -32,7 +39,9 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Otp',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.BigAutoField(auto_created=True,
+                                           primary_key=True, serialize=False,
+                                           verbose_name='ID')),
                 ('token', models.CharField(max_length=200, null=True)),
                 ('phone', models.CharField(max_length=11)),
                 ('code', models.SmallIntegerField()),
@@ -42,14 +51,18 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Address',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.BigAutoField(auto_created=True,
+                                           primary_key=True, serialize=False,
+                                           verbose_name='ID')),
                 ('fullname', models.CharField(max_length=40)),
                 ('phone', models.CharField(max_length=12)),
                 ('address_provience', models.CharField(max_length=50)),
                 ('address_city', models.CharField(max_length=50)),
                 ('address_street', models.CharField(max_length=300)),
                 ('postal_code', models.CharField(max_length=10)),
-                ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='addresses', to=settings.AUTH_USER_MODEL)),
+                ('user', models.ForeignKey(
+                    on_delete=django.db.models.deletion.CASCADE,
+                    related_name='addresses', to=settings.AUTH_USER_MODEL)),
             ],
         ),
     ]

@@ -19,7 +19,9 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='DiscountCode',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.BigAutoField(auto_created=True,
+                                           primary_key=True, serialize=False,
+                                           verbose_name='ID')),
                 ('name', models.CharField(max_length=10, unique=True)),
                 ('discount', models.SmallIntegerField(default=0)),
                 ('quantity', models.SmallIntegerField(default=1)),
@@ -28,33 +30,49 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Order',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.BigAutoField(auto_created=True,
+                                           primary_key=True, serialize=False,
+                                           verbose_name='ID')),
                 ('total_price', models.IntegerField(default=0)),
                 ('created_at', models.DateTimeField(auto_now_add=True)),
                 ('is_paid', models.BooleanField(default=False)),
                 ('is_shipped', models.BooleanField(default=False)),
-                ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='order', to=settings.AUTH_USER_MODEL)),
+                ('user', models.ForeignKey(
+                    on_delete=django.db.models.deletion.CASCADE,
+                    related_name='order', to=settings.AUTH_USER_MODEL)),
             ],
         ),
         migrations.CreateModel(
             name='OrderItem',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.BigAutoField(auto_created=True,
+                                           primary_key=True, serialize=False,
+                                           verbose_name='ID')),
                 ('size', models.CharField(max_length=12)),
                 ('color', models.CharField(max_length=12)),
                 ('quantity', models.SmallIntegerField()),
                 ('price', models.PositiveIntegerField()),
                 ('discount_price', models.FloatField(blank=True, null=True)),
-                ('order', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='items', to='order.order')),
-                ('product', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='items', to='product.product')),
+                ('order', models.ForeignKey(
+                    on_delete=django.db.models.deletion.CASCADE,
+                    related_name='items', to='order.order')),
+                ('product', models.ForeignKey(
+                    on_delete=django.db.models.deletion.CASCADE,
+                    related_name='items', to='product.product')),
             ],
         ),
         migrations.CreateModel(
             name='AddressItem',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('address', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='address_item', to='account.address')),
-                ('order', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='address_item', to='order.order')),
+                ('id', models.BigAutoField(auto_created=True,
+                                           primary_key=True, serialize=False,
+                                           verbose_name='ID')),
+                ('address', models.ForeignKey(
+                    on_delete=django.db.models.deletion.CASCADE,
+                    related_name='address_item', to='account.address')),
+                ('order', models.ForeignKey(
+                    on_delete=django.db.models.deletion.CASCADE,
+                    related_name='address_item', to='order.order')),
             ],
         ),
     ]

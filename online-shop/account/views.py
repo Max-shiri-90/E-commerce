@@ -5,7 +5,7 @@ from django.shortcuts import render, redirect, reverse
 from django.urls import reverse_lazy
 from django.views import View
 from django.views.generic.edit import DeleteView, UpdateView
-from django.contrib.auth import authenticate, login, logout as logout_
+from django.contrib.auth import login, logout as logout_
 
 from .forms import RegisterForm, CheckOtpForm, AddressCreationForm, ProfileForm
 from .models import Otp, User, Address
@@ -13,7 +13,8 @@ from .models import Otp, User, Address
 import ghasedakpack
 
 
-SMS = ghasedakpack.Ghasedak("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx")
+SMS = ghasedakpack.Ghasedak(
+    "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx")
 
 
 class RegisterView(View):
@@ -22,27 +23,27 @@ class RegisterView(View):
     """
     def get(self, request):
         form = RegisterForm()
-        return render(request, 'account/register.html', {'form':form})
+        return render(request, 'account/register.html', {'form': form})
 
     def post(self, request):
         form = RegisterForm(request.POST)
         if form.is_valid():
             cd = form.cleaned_data
             randcode = randint(10000, 99999)
-            SMS.verification({'receptor': cd["phone"], 'type': '1', \
-                'template': 'randcode', 'param1': randcode})
+            SMS.verification({'receptor': cd["phone"], 'type': '1',
+                              'template': 'randcode', 'param1': randcode})
             token = str(uuid4())
             Otp.objects.create(phone=cd['phone'], code=randcode, token=token)
             return redirect(reverse('account:check-otp')+f'?token={token}')
         else:
             form.add_error('phone', 'invalid data')
-        return render(request, 'account/register.html', {'form':form})
+        return render(request, 'account/register.html', {'form': form})
 
 
 class CheckOtpView(View):
     def get(self, request):
         form = CheckOtpForm()
-        return render(request, 'account/check-otp.html', {'form':form})
+        return render(request, 'account/check-otp.html', {'form': form})
 
     def post(self, request):
         token = request.GET.get('token')
@@ -56,13 +57,13 @@ class CheckOtpView(View):
                 return redirect('/')
         else:
             form.add_error('phone', 'invalid data')
-        return render(request, 'account/check-otp.html', {'form':form})
+        return render(request, 'account/check-otp.html', {'form': form})
 
 
 class AddAddressView(View):
     def get(self, request):
         form = AddressCreationForm(request.GET)
-        return render(request, 'account/add-address.html', {'form':form})
+        return render(request, 'account/add-address.html', {'form': form})
 
     def post(self, request):
         form = AddressCreationForm(request.POST)
@@ -73,7 +74,7 @@ class AddAddressView(View):
             next_page = request.GET.get('next')
             if next_page:
                 return redirect(next_page)
-        return render(request, 'account/add-address.html', {'form':form})
+        return render(request, 'account/add-address.html', {'form': form})
 
 
 class DeleteAddressView(DeleteView):

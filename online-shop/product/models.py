@@ -1,6 +1,5 @@
 from django.db import models
 from django.utils.text import slugify
-from django.urls import reverse
 
 from account.models import User
 
@@ -46,14 +45,15 @@ class Product(models.Model):
     price = models.IntegerField()
     discount_price = models.FloatField(null=True, blank=True)
     discount_percentage = models.FloatField(default=0)
-    
+
     quantity = models.SmallIntegerField()
     description = models.TextField()
     added_date = models.DateField(auto_now_add=True)
-    
+
     size = models.ManyToManyField(Size, blank=True, related_name="products")
     color = models.ManyToManyField(Color, blank=True, related_name="products")
-    category = models.ManyToManyField(Category, blank=True, related_name="products")
+    category = models.ManyToManyField(Category, blank=True,
+                                      related_name="products")
 
     def __str__(self):
         return str(self.id)
@@ -71,13 +71,14 @@ class Product(models.Model):
         if not self.slug:
             self.slug = slugify(self.title, allow_unicode=True)
         if self.discount_percentage > 0:
-            self.discount_price = self.price - (self.price * self.discount_percentage) / 100
+            self.discount_price = self.price - (self.price *
+                                                self.discount_percentage) / 100
         return super().save(*args, **kwargs)
 
 
 class ProductImage(models.Model):
-    product = models.ForeignKey(Product, on_delete=models.CASCADE, \
-        related_name='images')
+    product = models.ForeignKey(Product, on_delete=models.CASCADE,
+                                related_name='images')
     image = models.ImageField(upload_to='products')
 
     def delete(self, *args, **kwargs):
@@ -90,7 +91,7 @@ class ProductImage(models.Model):
         except ProductImage.DoesNotExist:
             return
         if obj.image and self.image and obj.image != self.image:
-            obj.image.delete()        
+            obj.image.delete()
 
     def save(self, *args, **kwargs):
         self.remove_on_image_update()
@@ -98,8 +99,8 @@ class ProductImage(models.Model):
 
 
 class Information(models.Model):
-    product = models.ForeignKey(Product, on_delete=models.CASCADE, \
-        related_name='informations')
+    product = models.ForeignKey(Product, on_delete=models.CASCADE,
+                                related_name='informations')
     text = models.TextField()
 
     def __str__(self):
@@ -107,8 +108,10 @@ class Information(models.Model):
 
 
 class Like(models.Model):
-    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='likes')
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='likes')
+    product = models.ForeignKey(Product, on_delete=models.CASCADE,
+                                related_name='likes')
+    user = models.ForeignKey(User, on_delete=models.CASCADE,
+                             related_name='likes')
 
     def __str__(self):
         return f"{self.product.id} - {self.user.phone}"

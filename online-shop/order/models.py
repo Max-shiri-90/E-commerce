@@ -5,7 +5,8 @@ from product.models import Product
 
 
 class Order(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='order')
+    user = models.ForeignKey(User, on_delete=models.CASCADE,
+                             related_name='order')
     total_price = models.IntegerField(default=0)
     created_at = models.DateTimeField(auto_now_add=True)
     is_paid = models.BooleanField(default=False)
@@ -16,8 +17,10 @@ class Order(models.Model):
 
 
 class OrderItem(models.Model):
-    order = models.ForeignKey(Order, on_delete=models.CASCADE, related_name='items')
-    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='items')
+    order = models.ForeignKey(Order, on_delete=models.CASCADE,
+                              related_name='items')
+    product = models.ForeignKey(Product, on_delete=models.CASCADE,
+                                related_name='items')
     size = models.CharField(max_length=12)
     color = models.CharField(max_length=12)
     quantity = models.SmallIntegerField()
@@ -26,8 +29,10 @@ class OrderItem(models.Model):
 
 
 class AddressItem(models.Model):
-    order = models.ForeignKey(Order, on_delete=models.CASCADE, related_name='address_item')
-    address = models.ForeignKey(Address, on_delete=models.CASCADE, related_name='address_item')
+    order = models.ForeignKey(Order, on_delete=models.CASCADE,
+                              related_name='address_item')
+    address = models.ForeignKey(Address, on_delete=models.CASCADE,
+                                related_name='address_item')
 
 
 class DiscountCode(models.Model):

@@ -22,8 +22,9 @@ class ProductListView(ListView):
         object_list = super().get_queryset()
         query = self.request.GET.get("search")
         if query:
-            object_list = Product.objects.filter(Q(title__icontains=query)|\
-                                                Q(category__title__icontains=query)).distinct()
+            object_list = Product.objects.filter(
+                Q(title__icontains=query) | Q(category__title__icontains=query
+                                              )).distinct()
         return object_list
 
 
@@ -42,8 +43,9 @@ class SpecialListView(ListView):
         object_list = super().get_queryset()
         query = self.request.GET.get("search")
         if query:
-            object_list = Product.objects.filter(Q(title__icontains=query)|\
-                                                Q(category__title__icontains=query)).distinct()
+            object_list = Product.objects.filter(
+                Q(title__icontains=query) | Q(category__title__icontains=query
+                                              )).distinct()
         return object_list
 
 
@@ -53,8 +55,9 @@ class ProductDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        if self.request.user.likes.filter(product__slug=self.object.slug, \
-                                    user_id=self.request.user.id).exists():
+        if self.request.user.likes.filter(
+                product__slug=self.object.slug,
+                user_id=self.request.user.id).exists():
             context['is_liked'] = True
         else:
             context['is_liked'] = False
@@ -75,7 +78,7 @@ def like(request, slug, pk):
     try:
         like = Like.objects.get(product__slug=slug, user_id=request.user.id)
         like.delete()
-        return JsonResponse({"response":"unliked"})
-    except:
+        return JsonResponse({"response": "unliked"})
+    except Exception:
         Like.objects.create(product_id=pk, user_id=request.user.id)
-        return JsonResponse({"response":"liked"})
+        return JsonResponse({"response": "liked"})

@@ -1,8 +1,11 @@
 from product.models import Product
 
+
 CART_SESSION_ID = 'cart'
 
+
 class Cart:
+
     def __init__(self, request):
         self.session = request.session
         cart = self.session.get(CART_SESSION_ID)
@@ -16,10 +19,12 @@ class Cart:
             product = Product.objects.get(id=int(item['id']))
             item['product'] = Product.objects.get(id=int(item['id']))
             if item['discount_price']:
-                item['total'] =int(item['quantity'])*int(item['discount_price'])
+                item['total'] = int(item['quantity']) *\
+                                int(item['discount_price'])
             else:
                 item['total'] = int(item['quantity'])*int(item['price'])
-            item['unique_id'] = self.unique_id_generator(product.id, item['size'], item['color'])
+            item['unique_id'] = self.unique_id_generator(
+                product.id, item['size'], item['color'])
             yield item
 
     def unique_id_generator(self, id, size, color):
@@ -29,8 +34,10 @@ class Cart:
     def add(self, product, size, color, quantity, price, discount_price):
         unique = self.unique_id_generator(product.id, size, color)
         if unique not in self.cart:
-            self.cart[unique] = {'id':str(product.id), 'size':size, 'color':color, \
-                'quantity':0, 'price':product.price, 'discount_price':product.discount_price}
+            self.cart[unique] = {'id': str(product.id), 'size': size,
+                                 'color': color, 'quantity': 0,
+                                 'price': product.price,
+                                 'discount_price': product.discount_price}
         self.cart[unique]['quantity'] += int(quantity)
         self.save()
 
@@ -38,7 +45,8 @@ class Cart:
         cart = self.cart.values()
         for item in cart:
             if item['discount_price']:
-                item['total'] =int(item['quantity'])*int(item['discount_price'])
+                item['total'] = int(item['quantity']) * int(
+                                   item['discount_price'])
             else:
                 item['total'] = int(item['quantity'])*int(item['price'])
         cart_sub_total = sum(int(item['total']) for item in cart)

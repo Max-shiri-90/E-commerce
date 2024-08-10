@@ -17,7 +17,9 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Category',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.BigAutoField(auto_created=True,
+                                           primary_key=True, serialize=False,
+                                           verbose_name='ID')),
                 ('title', models.CharField(max_length=40)),
             ],
             options={
@@ -29,7 +31,9 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Color',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.BigAutoField(auto_created=True,
+                                           primary_key=True, serialize=False,
+                                           verbose_name='ID')),
                 ('title', models.CharField(max_length=10)),
             ],
             options={
@@ -39,7 +43,9 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Product',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.BigAutoField(auto_created=True,
+                                           primary_key=True, serialize=False,
+                                           verbose_name='ID')),
                 ('title', models.CharField(max_length=20)),
                 ('slug', models.SlugField(blank=True, null=True)),
                 ('price', models.IntegerField()),
@@ -48,14 +54,20 @@ class Migration(migrations.Migration):
                 ('quantity', models.SmallIntegerField()),
                 ('description', models.TextField()),
                 ('added_date', models.DateField(auto_now_add=True)),
-                ('category', models.ManyToManyField(blank=True, related_name='products', to='product.category')),
-                ('color', models.ManyToManyField(blank=True, related_name='products', to='product.color')),
+                ('category', models.ManyToManyField(blank=True,
+                                                    related_name='products',
+                                                    to='product.category')),
+                ('color', models.ManyToManyField(blank=True,
+                                                 related_name='products',
+                                                 to='product.color')),
             ],
         ),
         migrations.CreateModel(
             name='Size',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.BigAutoField(auto_created=True,
+                                           primary_key=True, serialize=False,
+                                           verbose_name='ID')),
                 ('title', models.CharField(max_length=10)),
             ],
             options={
@@ -67,30 +79,45 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='ProductImage',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.BigAutoField(auto_created=True,
+                                           primary_key=True, serialize=False,
+                                           verbose_name='ID')),
                 ('image', models.ImageField(upload_to='products')),
-                ('product', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='images', to='product.product')),
+                ('product', models.ForeignKey(
+                    on_delete=django.db.models.deletion.CASCADE,
+                    related_name='images', to='product.product')),
             ],
         ),
         migrations.AddField(
             model_name='product',
             name='size',
-            field=models.ManyToManyField(blank=True, related_name='products', to='product.size'),
+            field=models.ManyToManyField(blank=True, related_name='products',
+                                         to='product.size'),
         ),
         migrations.CreateModel(
             name='Like',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('product', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='likes', to='product.product')),
-                ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='likes', to=settings.AUTH_USER_MODEL)),
+                ('id', models.BigAutoField(auto_created=True,
+                                           primary_key=True, serialize=False,
+                                           verbose_name='ID')),
+                ('product', models.ForeignKey(
+                    on_delete=django.db.models.deletion.CASCADE,
+                    related_name='likes', to='product.product')),
+                ('user', models.ForeignKey(
+                    on_delete=django.db.models.deletion.CASCADE,
+                    related_name='likes', to=settings.AUTH_USER_MODEL)),
             ],
         ),
         migrations.CreateModel(
             name='Information',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.BigAutoField(auto_created=True,
+                                           primary_key=True, serialize=False,
+                                           verbose_name='ID')),
                 ('text', models.TextField()),
-                ('product', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='informations', to='product.product')),
+                ('product', models.ForeignKey(
+                    on_delete=django.db.models.deletion.CASCADE,
+                    related_name='informations', to='product.product')),
             ],
         ),
     ]
