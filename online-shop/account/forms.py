@@ -12,7 +12,8 @@ class UserCreationForm(forms.ModelForm):
     fields, plus a repeated password.
     """
     password1 = forms.CharField(label='password', widget=forms.PasswordInput)
-    password2 = forms.CharField(label='repeat password', widget=forms.PasswordInput)
+    password2 = forms.CharField(label='repeat password',
+                                widget=forms.PasswordInput)
 
     class Meta:
         model = User
@@ -47,18 +48,21 @@ class UserChangeForm(forms.ModelForm):
 
 
 class RegisterForm(forms.Form):
-    phone = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
+    phone = forms.CharField(widget=forms.TextInput(attrs={
+        'class': 'form-control'}))
 
     def clean_phone(self):
         phone = self.cleaned_data.get('phone')
-        if len(phone)!= 11:
-            raise ValidationError('phone number must have 11 characters', code='invalid phone')
+        if len(phone) != 11:
+            raise ValidationError('phone number must have 11 characters',
+                                  code='invalid phone')
         return phone
 
 
 class CheckOtpForm(forms.Form):
-    code = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}),\
-         validators=[validators.MaxLengthValidator(4)]) 
+    code = forms.CharField(widget=forms.TextInput(attrs={
+        'class': 'form-control'}),
+        validators=[validators.MaxLengthValidator(4)])
 
 
 class AddressCreationForm(forms.ModelForm):
@@ -74,7 +78,8 @@ class ProfileForm(forms.ModelForm):
     A form for updating profile. Includes fullname and email fields
     on the profile, but it has phone as a readonly field.
     """
-    phone = forms.CharField(widget=forms.TextInput(attrs={'readonly':'readonly'}))
+    phone = forms.CharField(widget=forms.TextInput(attrs={
+        'readonly': 'readonly'}))
 
     class Meta:
         model = User

@@ -1,12 +1,15 @@
 asgiref==3.6.0
-backports.zoneinfo==0.2.1;python_version<"3.9"
 certifi==2022.12.7
 charset-normalizer==3.1.0
 Django==4.2
 django-widget-tweaks==1.4.12
+flake8==7.1.1
 ghasedakpack==0.1.13
 idna==3.4
+mccabe==0.7.0
 Pillow==9.5.0
+pycodestyle==2.12.1
+pyflakes==3.2.0
 requests==2.29.0
 sqlparse==0.4.4
 urllib3==1.26.15

@@ -3,7 +3,7 @@ from django.contrib.auth.models import Group
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 
 from .models import User, Otp, Address
-from .forms import UserCreationForm, UserChangeForm, AddressCreationForm
+from .forms import UserCreationForm, UserChangeForm
 
 
 class UserAdmin(BaseUserAdmin):
@@ -13,7 +13,6 @@ class UserAdmin(BaseUserAdmin):
     search_fields = ('phone',)
     list_display = ('phone', 'is_admin', 'fullname')
     list_filter = ('is_admin',)
-    
     fieldsets = (
         ('account', {'fields': ('phone',)}),
         ('personal information', {'fields': ('fullname', 'email', )}),
@@ -23,9 +22,8 @@ class UserAdmin(BaseUserAdmin):
     add_fieldsets = (
         ('add new user', {
             'classes': ('wide',),
-            'fields': ('phone', 'email', 'fullname','password1', 'password2'),
-        }),
-    )
+            'fields': ('phone', 'email', 'fullname', 'password1', 'password2')
+            }),)
 
     ordering = ('phone',)
     filter_horizontal = ()
