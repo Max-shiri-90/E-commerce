@@ -20,10 +20,12 @@
 [logo]: auto-generated-path-to-file-when-you-upload-image "Hover me"
 ![error text][logo]
 
-#### The project directory:     lakers
-#### The apps directories:      account, order, product
+#### The project directory: **lakers**
+#### The apps directories:  **account, order, product**
 
-![text if the image fails to load](auto-generated-path-to-file-when-you-upload-image "Text displayed on hover")
+[markdown-cheatsheet]: https://github.com/im-luka/markdown-cheatsheet
+[docs]: https://github.com/adam-p/markdown-here
 
-[logo]: auto-generated-path-to-file-when-you-upload-image "Hover me"
-![error text][logo]
+[Like it so far? Follow me on GitHub](https://github.com/im-luka)
+[My Markdown Cheatsheet - star it if you like it][markdown-cheatsheet]
+Find some great docs [here][docs]
