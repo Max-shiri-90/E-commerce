@@ -11,7 +11,7 @@
 #### Now you can Run the project:
     python manage.py runserver
 
-##### Ok! You are ready to go, makemigrations, createsuperuser, migrate and add products. It should be working fine.
+##### Ok! You are ready to go...
 
 [pic]: https://raw.githubusercontent.com/Max-shiri-90/E-commerce/refs/heads/master/Lakers-first-page.png "Website First Page"
 ![picture][pic]
