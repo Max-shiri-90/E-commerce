@@ -11,20 +11,20 @@
     python -m venv venv
     ```
 
-#### Activate the venv:
+#### Activate the `.venv` directory
 ###### in Linux or MacOS: 
     ```
     source .venv/bin/activate
     ```
 ###### in Windows cmd: 
-    ```
+    `
     source venv/Scripts/Activate.bat
-    ```
+    `
 
-#### Next install the required apps in venv:
-    ``` 
+#### Next install the required apps in `.venv`:
+    `` 
     pip install -r requirements.txt
-    ```
+    ``
 #### Run the project:
     ``` 
     python manage.py runserver
