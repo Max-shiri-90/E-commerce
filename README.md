@@ -2,19 +2,19 @@
 ## E-commerce Website Project using Django Framework
 
 #### To run the app, download it. Then make a virtual environment:
-    in Linux or MacOS:  ```python3 -m venv .venv```
-    in Windows cmd:     ```python -m venv venv```
+    in Linux or MacOS:  ```console python3 -m venv .venv```
+    in Windows cmd:     ```console python -m venv venv```
 
 #### Activate the venv:
-    in Linux or MacOS:  ```source .venv/bin/activate```
-    in Windows cmd:     ```source venv/Scripts/Activate.bat```
+    in Linux or MacOS:  ```console source .venv/bin/activate```
+    in Windows cmd:     ```console source venv/Scripts/Activate.bat```
 
 #### Next install the required apps in venv:
-    ```
+    ```console 
     pip install -r requirements.txt
     ```
 #### Run the project:
-    ```
+    ```console 
     python manage.py runserver
     ```
 
