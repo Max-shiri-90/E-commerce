@@ -6,15 +6,15 @@
     in Windows cmd:     ```bash python -m venv venv```
 
 #### Activate the venv:
-    in Linux or MacOS:  ```bash source .venv/bin/activate```
-    in Windows cmd:     ```bash source venv/Scripts/Activate.bat```
+    in Linux or MacOS:  ```zsh source .venv/bin/activate```
+    in Windows cmd:     ``` source venv/Scripts/Activate.bat```
 
 #### Next install the required apps in venv:
-    ```bash 
+    ```
     pip install -r requirements.txt
     ```
 #### Run the project:
-    ```bash 
+    ``` 
     python manage.py runserver
     ```
 
