@@ -1,25 +1,28 @@
 # E-commerce
-E-commerce Website Project using Django Framework
+## E-commerce Website Project using Django Framework
 
-To run the app, download it. Then make a virtual environment:
-    in Linux or MacOS:  python3 -m venv .venv
-    in Windows cmd:     python -m venv venv
+#### To run the app, download it. Then make a virtual environment:
+    in Linux or MacOS:  ```python3 -m venv .venv```
+    in Windows cmd:     ```python -m venv venv```
 
-Activate the venv:
-    in Linux or MacOS:  source .venv/bin/activate
-    in Windows cmd:     source venv/Scripts/Activate.bat
+#### Activate the venv:
+    in Linux or MacOS:  ```source .venv/bin/activate```
+    in Windows cmd:     ```source venv/Scripts/Activate.bat```
 
-Next install the required apps in venv:
+#### Next install the required apps in venv:
+    ```
     pip install -r requirements.txt
-
-Run the project:
+    ```
+#### Run the project:
+    ```
     python manage.py runserver
+    ```
 
-now you are ready to go, makemigrations, createsuperuser, migrate, add products. And it should be working fine.
+### Ok! Now you are ready to go, makemigrations, createsuperuser, migrate, add products. And it should be working fine.
 
-The project directory:  lakers
-The apps directories:   account
-                        order
-                        product
-
-
+#### The project directory:  
+                        -lakers
+#### The apps directories:
+                        -account
+                        +order
+                        *product
