@@ -30,6 +30,7 @@ class RegisterView(View):
         if form.is_valid():
             cd = form.cleaned_data
             randcode = randint(10000, 99999)
+            print(randcode)
             SMS.verification({'receptor': cd["phone"], 'type': '1',
                               'template': 'randcode', 'param1': randcode})
             token = str(uuid4())

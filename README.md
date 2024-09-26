@@ -1,5 +1,5 @@
 # E-commerce
-## E-commerce Website Project using Django Framework
+## Lakers, an Online Shop Project with Django Framework
 
 #### To run the app, Make a virtual environment and Activate it:
     python3 -m venv .venv
@@ -8,20 +8,21 @@
 #### Next install the required apps in `.venv`:
     pip install -r requirements.txt
 
-#### Run the project:
+#### Now you can Run the project:
     python manage.py runserver
 
-##### Ok! Now you are ready to go, makemigrations, createsuperuser, migrate, add products. And it should be working fine.
+##### Ok! You are ready to go, makemigrations, createsuperuser, migrate and add products. It should be working fine.
 
-[gif]: git link here "me"
-![gif][gif]
+[pic]: pic link here "Website First Page"
+![picture][pic]
 
 #### The project directory: 
-**lakers**
+###### lakers
 
 #### The apps directories:  
-**account, order, product**
+###### account, order, product
 
 
 [blog]: https://masoud-shiri.com/
 Learn more about me through my Personal Website [here][blog]
+Feel free to ask any questions

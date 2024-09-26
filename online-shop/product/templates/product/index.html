@@ -140,7 +140,7 @@ Lakers
                         {% for image in product.images.all %}
                             <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
                                 {% if forloop.first %}
-                                <img class="img-fluid w-100" src="/media/{{ image.image }}" alt="">
+                                <img style='width: 100%; object-fit: contain' class="" src="/media/{{ image.image }}" alt="" height="300rem">
                                 {% endif %}
                             </div>
                         {% endfor %}
