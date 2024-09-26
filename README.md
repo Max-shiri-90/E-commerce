@@ -13,7 +13,7 @@
 
 ##### Ok! You are ready to go, makemigrations, createsuperuser, migrate and add products. It should be working fine.
 
-[pic]: pic link here "Website First Page"
+[pic]: https://raw.githubusercontent.com/Max-shiri-90/E-commerce/refs/heads/master/Lakers-first-page.png "Website First Page"
 ![picture][pic]
 
 #### The project directory: 
