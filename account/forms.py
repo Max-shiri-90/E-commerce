@@ -62,7 +62,9 @@ class RegisterForm(forms.Form):
 class CheckOtpForm(forms.Form):
     code = forms.CharField(widget=forms.TextInput(attrs={
         'class': 'form-control'}),
-        validators=[validators.MaxLengthValidator(4)])
+        validators=[validators.MaxLengthValidator(5)])
+    phone = forms.CharField(widget=forms.TextInput(attrs={
+        'class': 'form-control'}))
 
 
 class AddressCreationForm(forms.ModelForm):

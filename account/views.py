@@ -29,8 +29,9 @@ class RegisterView(View):
         form = RegisterForm(request.POST)
         if form.is_valid():
             cd = form.cleaned_data
+            global randcode 
             randcode = randint(10000, 99999)
-            print(randcode)
+            print('-------', randcode, '-------')
             SMS.verification({'receptor': cd["phone"], 'type': '1',
                               'template': 'randcode', 'param1': randcode})
             token = str(uuid4())
@@ -44,11 +45,15 @@ class RegisterView(View):
 class CheckOtpView(View):
     def get(self, request):
         form = CheckOtpForm()
-        return render(request, 'account/check-otp.html', {'form': form})
+        return render(request, 'account/check-otp.html', {
+            'form': form, 
+            'randcode': randcode
+            })
 
     def post(self, request):
         token = request.GET.get('token')
         form = CheckOtpForm(request.POST)
+        print('++++++++', form)
         if form.is_valid():
             cd = form.cleaned_data
             if Otp.objects.filter(code=cd['code'], token=token).exists():
@@ -57,7 +62,7 @@ class CheckOtpView(View):
                 login(request, user)
                 return redirect('/')
         else:
-            form.add_error('phone', 'invalid data')
+            form.add_error('phone', 'invalid data...')
         return render(request, 'account/check-otp.html', {'form': form})
 
 

@@ -16,6 +16,12 @@ Lakers - check-otp
         </div>
         <div class="row px-xl-5">
             <div class="col-lg-7 mb-5">
+                <div>
+                    To Register/Login Enter this code: " {{ randcode }} "
+                    <br>
+                    In an enterprise project, use an otp api, and you will recieve this code as SMS.
+                    <br>
+                </div>
                 <div class="contact-form">
                     <div id="success"></div>
                     <form method="post">
@@ -23,7 +29,7 @@ Lakers - check-otp
                         <div class="control-group">
                             {{ form.code }}
                             {% for error in form.phone.errors %}
-                             <p class="alert alert-danger"> {{ error }} </p>
+                                <p class="alert alert-danger"> {{ error }} </p>
                             {% endfor %}
                             <p class="help-block text-danger"></p>
                         </div>
