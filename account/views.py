@@ -6,6 +6,7 @@ from django.urls import reverse_lazy
 from django.views import View
 from django.views.generic.edit import DeleteView, UpdateView
 from django.contrib.auth import login, logout as logout_
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 
 from .forms import RegisterForm, CheckOtpForm, AddressCreationForm, ProfileForm
 from .models import Otp, User, Address
@@ -53,7 +54,6 @@ class CheckOtpView(View):
     def post(self, request):
         token = request.GET.get('token')
         form = CheckOtpForm(request.POST)
-        print('++++++++', form)
         if form.is_valid():
             cd = form.cleaned_data
             if Otp.objects.filter(code=cd['code'], token=token).exists():
@@ -89,13 +89,15 @@ class DeleteAddressView(DeleteView):
     success_url = reverse_lazy('account:add-address')
 
 
-class ProfileView(UpdateView):
+class ProfileView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = User
-    template_name = 'account/profile.html'
     form_class = ProfileForm
+    template_name = 'account/profile.html'
+    success_url = reverse_lazy('account:profile')
 
-    def get_success_url(self):
-        return reverse_lazy('account:profile', kwargs={'pk': self.object.pk})
+    def test_func(self):
+        obj = self.get_object()
+        return obj == self.request.user
 
 
 def logout(request):
