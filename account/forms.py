@@ -3,7 +3,7 @@ from django.contrib.auth.forms import ReadOnlyPasswordHashField
 from django.core.exceptions import ValidationError
 from django.core import validators
 
-from .models import User, Address
+from .models import User, Otp, Address
 
 
 class UserCreationForm(forms.ModelForm):
@@ -63,8 +63,6 @@ class CheckOtpForm(forms.Form):
     code = forms.CharField(widget=forms.TextInput(attrs={
         'class': 'form-control'}),
         validators=[validators.MaxLengthValidator(5)])
-    phone = forms.CharField(widget=forms.TextInput(attrs={
-        'class': 'form-control'}))
 
 
 class AddressCreationForm(forms.ModelForm):
