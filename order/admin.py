@@ -18,7 +18,7 @@ class AddressItemAdmin(admin.TabularInline):
 @admin.register(Order)
 class OrderAdmin(admin.ModelAdmin):
     inlines = (OrderItemAdmin, AddressItemAdmin, )
-    search_fields = ('id', )
+    search_fields = ('id', 'user',)
     list_display = ('id', 'user', 'total_price', 'is_paid', 'is_shipped',)
     list_filter = ('is_paid', 'is_shipped',)
 
