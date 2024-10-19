@@ -17,10 +17,10 @@
 ![picture][pic]
 
 #### The project directory: 
-###### lakers
+###### lakers_online_shop
 
 #### The apps directories:  
-###### account, order, product
+###### accounts, orders, products
 
 
 [blog]: https://masoud-shiri.com/

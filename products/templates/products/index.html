@@ -1,0 +1,283 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Lakers
+{% endblock title %}
+
+{% block content %}
+
+<body>
+
+    <!-- Search Start -->
+    <div class="row align-items-center py-3 px-xl-5">
+        <div class="col-lg-3 d-none d-lg-block">
+            <a href="/" class="text-decoration-none">
+                <h3 class="m-0 display-5 font-weight-semi-bold">
+                    <span class="text-primary font-weight-bold border px-3 mr-1">Lakers</span>Shop
+                </h3>
+            </a>
+        </div>
+        <div class="col-lg-6 col-6 text-left">
+            <form action=""  method="get">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search for products" name="search">
+                    <div class="input-group-append">
+                        <span class="input-group-text bg-transparent text-primary">
+                            <button type="submit" class="btn btn-primary btn-sm">
+                                <div class="input-group">
+                                    <i class="fa fa-search"></i>
+                                </div>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="col-lg-3 col-6 text-right">
+            <!-- Like -->
+            <a href="{% url 'products:like-list' %}" class="btn border">
+                <i class="fas fa-heart text-primary"></i>
+                <span class="badge">{{ user.likes.count }}</span>
+            </a>
+            <!-- Shopping Cart -->
+            <a href="{% url 'orders:cart-detail' %}" class="btn border">
+                <i class="fas fa-shopping-cart text-primary"></i>
+                <span class="badge">cart</span>
+            </a>
+        </div>
+    </div>
+    <br>
+    <!-- Search End -->
+
+
+    <!-- Navbar Start -->
+    <div class="container-fluid mb-5">
+        <div class="row border-top px-xl-5">
+            <!-- Categories Start -->
+            <div class="col-lg-3 d-none d-lg-block">
+                <a class="btn shadow-none d-flex align-items-center justify-content-between bg-primary text-white w-100" data-toggle="" style="height: 65px; margin-top: -1px; padding: 0 30px;">
+                    <h6 class="m-0">Categories</h6>
+                </a>
+                <nav class="bg-secondary navbar navbar-vertical navbar-light align-items-start p-0 border border-top-0 border-bottom-0" id="navbar-vertical">
+                    <div class="navbar-nav w-100 overflow-hidden" style="height: 410px">
+                        {% for category in category_list %}
+                            <a href="{% url 'products:product-list' %}?search={{ category.title }}" class="nav-item nav-link">{{ category.title }}</a>
+                        {% endfor %}
+                    </div>
+                </nav>
+            </div>
+            <!-- Categories End -->
+            <div class="col-lg-9">
+                <div id="header-carousel" class="carousel slide" data-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active" style="height: 410px;">
+                            <img class="img-fluid" src="{% static 'img/carousel--1.jpeg' %}" alt="Image">
+                            <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
+                                <div class="p-3" style="max-width: 700px;">
+                                    <h4 class="text-light text-uppercase font-weight-medium mb-3">10% Off Your First Order</h4>
+                                    <h3 class="display-4 text-white font-weight-semi-bold mb-4">Basketball</h3>
+                                    <a href="{% url 'products:special-list' %}?search=Basketball" class="btn btn-light py-2 px-3">Shop Now</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item" style="height: 410px;">
+                            <img class="img-fluid" src="{% static 'img/carousel--2.jpeg' %}" alt="Image">
+                            <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
+                                <div class="p-3" style="max-width: 700px;">
+                                    <h4 class="text-light text-uppercase font-weight-medium mb-3">10% Off Your First Order</h4>
+                                    <h3 class="display-4 text-white font-weight-semi-bold mb-4">Martial Arts</h3>
+                                    <a href="{% url 'products:special-list' %}?search=Martial Arts" class="btn btn-light py-2 px-3">Shop Now</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item" style="height: 410px;">
+                            <img class="img-fluid" src="{% static 'img/carousel-3.jpeg' %}" alt="Image">
+                            <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
+                                <div class="p-3" style="max-width: 700px;">
+                                    <h4 class="text-light text-uppercase font-weight-medium mb-3">10% Off Your First Order</h4>
+                                    <h3 class="display-4 text-white font-weight-semi-bold mb-4">Females</h3>
+                                    <a href="{% url 'products:special-list' %}?search=Females" class="btn btn-light py-2 px-3">Shop Now</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <a class="carousel-control-prev" href="#header-carousel" data-slide="prev">
+                        <div class="btn btn-dark" style="width: 45px; height: 45px;">
+                            <span class="carousel-control-prev-icon mb-n2"></span>
+                        </div>
+                    </a>
+                    <a class="carousel-control-next" href="#header-carousel" data-slide="next">
+                        <div class="btn btn-dark" style="width: 45px; height: 45px;">
+                            <span class="carousel-control-next-icon mb-n2"></span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Navbar End -->
+
+    <!-- Page Header Start -->
+    <div class="container-fluid bg-secondary mb-5">
+        <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 150px">
+            <h1 class="font-weight-semi-bold text-uppercase mb-3">Trandy Products</h1>
+            <div class="d-inline-flex">
+                <p class="m-0"><a href="">Home</a></p>
+                <p class="m-0 px-2">-</p>
+                <p class="m-0">Trandy Products</p>
+            </div>
+        </div>
+    </div>
+    <!-- Page Header End -->
+
+    <!-- Products Start -->
+    <div class="container-fluid pt-5">
+        <div class="row px-xl-5 pb-3">
+            {% for product in object_list %}
+                <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
+                    <div class="card product-item border-0 mb-4">
+                        {% for image in product.images.all %}
+                            <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
+                                {% if forloop.first %}
+                                <img style='width: 100%; object-fit: contain' class="" src="/media/{{ image.image }}" alt="" height="300rem">
+                                {% endif %}
+                            </div>
+                        {% endfor %}
+                        <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
+                            <h6 class="text-truncate mb-3">{{ product.title }}</h6>
+                            {% if product.discount_price %}
+                                <div class="d-flex justify-content-center">
+                                    <h6>{{ product.discount_price }} $</h6><h6 class="text-muted ml-2"><del>{{ product.price }} $</del></h6>
+                                </div>
+                            {% else %}
+                                <div class="d-flex justify-content-center">
+                                    <h6>{{ product.price }} $</h6>
+                                </div>
+                            {% endif %}
+                        </div>
+                        <div class="card-footer d-flex justify-content-between bg-light border">
+                            <a href="{{ product.get_absolute_url }}" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View Detail</a>
+                            <a class="btn btn-sm text-dark p-0"><i class="fas fa-heart text-primary mr-1"></i>Like</a>
+                        </div>
+                    </div>
+                </div>
+                {% empty %}
+                <li>No products yet.</li>
+            {% endfor %}
+        </div>
+        <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-center">
+                {% if page_obj.has_previous %}
+                    <a class="small page-link" href="?page=1" tabindex="-1">&laquo; First Page</a>
+                    <a class="small page-link" href="?page={{ page_obj.previous_page_number }}" tabindex="-1">&laquo; Previous</a>
+                {% else %}
+                    <a class="small page-link" style="color:rgb(167, 167, 167)">First Page</a>
+                    <a class="small page-link" style="color:rgb(167, 167, 167)">Previous</a>
+                {% endif %}
+                    <a class="small page-link">...</a></li>
+                    <a class="small page-link" href="?page={{ page_obj.page_number }}">{{ page_obj.number }}</a></li>
+                    <a class="small page-link">...</a></li>
+                {% if page_obj.has_next %}
+                    <a class="small page-link" href="?page={{ page_obj.next_page_number }}" tabindex="-1">Next &raquo;</a>
+                    <a class="small page-link" href="?page={{ page_obj.paginator.num_pages }}" tabindex="-1">Last Page &raquo;</a>
+                {% else %}
+                    <a class="small page-link" style="color:rgb(167, 167, 167)">Next</a>
+                    <a class="small page-link" style="color:rgb(167, 167, 167)">Last Page</a>
+                {% endif %}
+            </ul>
+        </nav>
+    </div>
+    <!-- Products End -->
+
+    <!-- Offer Start -->
+    <div class="container-fluid offer pt-5">
+        <div class="row px-xl-5">
+            <div class="col-md-6 pb-4">
+                <div class="position-relative bg-secondary text-center text-md-right text-white mb-2 py-5 px-5">
+                    <img src="{% static 'img/offer---1.png' %}" alt="">
+                    <div class="position-relative" style="z-index: 1;">
+                        <h3 class="mb-4 font-weight-semi-bold">Track and Field Collection</h3>
+                        <h5 class="text-uppercase text-primary mb-3">20% off the all order</h5>
+                        <a href="{% url 'products:special-list' %}?search=Track and Field" class="btn btn-outline-primary py-md-2 px-md-3">Shop Now</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 pb-4">
+                <div class="position-relative bg-secondary text-center text-md-left text-white mb-2 py-5 px-5">
+                    <img src="{% static 'img/offer---2.png' %}" alt="">
+                    <div class="position-relative" style="z-index: 1;">
+                        <h2 class="mb-4 font-weight-semi-bold">Soccer Collection</h2>
+                        <h5 class="text-uppercase text-primary mb-3">10% off the all order</h5>
+                        <a href="{% url 'products:special-list' %}?search=Soccer" class="btn btn-outline-primary py-md-2 px-md-3">Shop Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Offer End -->
+
+    <!-- Special Categories Start -->
+    <div class="container-fluid pt-5">
+        <div class="row px-xl-5 pb-3">
+            <div class="col-lg-4 col-md-6 pb-1">
+                <div class="cat-item d-flex flex-column border mb-4" style="padding: 30px;">
+                    <p class="text-right">15 Products</p>
+                    <a href="{% url 'products:special-list' %}?search=Balls" class="cat-img position-relative overflow-hidden mb-3">
+                        <img class="img-fluid" src="{% static 'img/cat--4.jpg' %}" width="200" height="200" alt="">
+                    </a>
+                    <h5 class="font-weight-semi-bold m-0">Balls</h5>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 pb-1">
+                <div class="cat-item d-flex flex-column border mb-4" style="padding: 30px;">
+                    <p class="text-right">15 Products</p>
+                    <a href="{% url 'products:special-list' %}?search=T-Shirts & shorts" class="cat-img position-relative overflow-hidden mb-3">
+                        <img class="img-fluid" src="{% static 'img/cat--5.jpg' %}" width="200" height="200" alt="">
+                    </a>
+                    <h5 class="font-weight-semi-bold m-0">T-Shirts & Shorts</h5>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 pb-1">
+                <div class="cat-item d-flex flex-column border mb-4" style="padding: 30px;">
+                    <p class="text-right">15 Products</p>
+                    <a href="{% url 'products:special-list' %}?search=Shoes" class="cat-img position-relative overflow-hidden mb-3">
+                        <img class="img-fluid" src="{% static 'img/cat--6.png' %}" width="200" height="200" alt="">
+                    </a>
+                    <h5 class="font-weight-semi-bold m-0">Shoes</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Special Categories End -->
+
+    <!-- Offer Start -->
+    <div class="container-fluid offer pt-5">
+        <div class="row px-xl-5">
+            <div class="col-md-6 pb-4">
+                <div class="position-relative bg-secondary text-center text-md-right text-white mb-2 py-5 px-5">
+                    <img src="{% static 'img/offer---3.png' %}" alt="">
+                    <div class="position-relative" style="z-index: 1;">
+                        <h3 class="mb-4 font-weight-semi-bold">Equipments Collection</h3>
+                        <h5 class="text-uppercase text-primary mb-3">20% off the all order</h5>
+                        <a href="{% url 'products:special-list' %}?search=Equipments" class="btn btn-outline-primary py-md-2 px-md-3">Shop Now</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 pb-4">
+                <div class="position-relative bg-secondary text-center text-md-left text-white mb-2 py-5 px-5">
+                    <img src="{% static 'img/offer---4.png' %}" alt="">
+                    <div class="position-relative" style="z-index: 1;">
+                        <h2 class="mb-4 font-weight-semi-bold">Bags Collection</h2>
+                        <h5 class="text-uppercase text-primary mb-3">10% off the all order</h5>
+                        <a href="{% url 'products:special-list' %}?search=Bags" class="btn btn-outline-primary py-md-2 px-md-3">Shop Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Offer End -->
+
+</body>
+
+{% endblock content %}

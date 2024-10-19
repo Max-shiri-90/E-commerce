@@ -17,10 +17,10 @@
                     <a class="nav-link dropdown-toggle" id="dropdown-a" data-toggle="dropdown" style="color:rgb(44, 44, 44)">Categories</a> 
                         <div class="dropdown-menu" aria-labelledby="dropdown-a">
                             {% for category in category_list %}
-                                <a class="dropdown-item" href="{% url 'product:product-list' %}?search={{category.title}}">{{ category.title }}</a>
+                                <a class="dropdown-item" href="{% url 'products:product-list' %}?search={{category.title}}">{{ category.title }}</a>
                             {% endfor %}
                         </div>
-                    <a class="nav-item nav-link" href="{% url 'order:cart-detail' %}">Shopping Cart</a>
+                    <a class="nav-item nav-link" href="{% url 'orders:cart-detail' %}">Shopping Cart</a>
                     <a class="nav-item nav-link" href="">Contact</a>
                     <a class="nav-item nav-link" href="">FAQ</a>
                 </div>
@@ -37,13 +37,13 @@
                     <a class="nav-link dropdown-toggle" id="dropdown-a" data-toggle="dropdown">{{ user.fullname }}</a>
                     {% endif %}
                     <div class="dropdown-menu" aria-labelledby="dropdown-a">
-                        <a class="dropdown-item" href="{% url 'account:profile' user.id %}">Your Profile</a>
-                        <a class="dropdown-item" href="{% url 'order:cart-detail' %}">Shopping Cart</a>
-                        <a class="dropdown-item" href="{% url 'account:logout' %}">Exit</a>
+                        <a class="dropdown-item" href="{% url 'accounts:profile' user.id %}">Your Profile</a>
+                        <a class="dropdown-item" href="{% url 'orders:cart-detail' %}">Shopping Cart</a>
+                        <a class="dropdown-item" href="{% url 'accounts:logout' %}">Exit</a>
                     </div>
                 {% else %}
                 <div class="row bg-secondary col-lg-6 px-xl-5">
-                    <a class="text-center" href="{% url 'account:user-register' %}">Login</a>
+                    <a class="text-center" href="{% url 'accounts:user-register' %}">Login</a>
                 </div>
                 {% endif %}
             </div>

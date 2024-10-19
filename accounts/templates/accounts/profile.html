@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block title %}
+Lakers - Profile
+{% endblock title %}
+
+{% block content %}
+
+<body>
+
+    <!-- Checkout Start -->
+    <div class="container-fluid pt-5">
+        {% if user.fullname == None %}
+        <div class="text-center mb-4">
+            <h2 class="section-title px-5"><span class="px-2">Your Profile</span></h2>
+        </div>
+        {% elif user.fullname %}
+        <div class="text-center mb-4">
+            <h2 class="section-title px-5"><span class="px-2">{{ user.fullname }} Profile</span></h2>
+        </div>
+        {% endif %}
+        <form method="post">
+            {% csrf_token %}
+            <div class="row px-xl-5">
+                <div class="col-lg-8">
+                    <div class="mb-4">
+                        <div>
+                            <div class="col-md-6 form-group">
+                                <label>Phone: </label>
+                                {{ form.phone }}
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label>Full Name: </label>
+                                {{ form.fullname }}
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label>Email</label>
+                                {{ form.email }}
+                            </div>
+                        </div>
+                        <br>                        
+                        <div>
+                            <button class="btn btn-primary py-2 px-4" type="submit" id="sendMessageButton">Save</button>
+                            <button class="btn btn-primary py-2 px-4" type="reset" id="sendMessageButton" href="/">Cancel</button>
+                            <a class="btn btn-primary py-2 px-4" href="{% url 'accounts:add-address' %}">Add address</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+</body>
+
+{% endblock content %}
