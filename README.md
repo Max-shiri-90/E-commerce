@@ -5,7 +5,7 @@
     python3 -m venv .venv
     source .venv/bin/activate
 
-#### Next install the required apps in `.venv`:
+#### Next install the required packages in `.venv`:
     pip install -r requirements.txt
 
 #### Now you can Run the project:
